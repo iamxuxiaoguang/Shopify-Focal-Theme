@@ -371,9 +371,15 @@
       {%- endcomment -%}
       {%- when 'buy_buttons' -%}
         {%- if request.page_type != 'password' -%}
+          {%- assign recipient_feature_active = false -%}
+
+          {%- if product.gift_card? and block.settings.show_gift_card_recipient -%}
+            {%- assign recipient_feature_active = true -%}
+          {%- endif -%}
+
           <div class="product-form__buy-buttons" {{ block.shopify_attributes }}>
             {%- form 'product', product, is: 'product-form', id: product_form_id -%}
-              {%- if product.gift_card? and block.settings.show_gift_card_recipient -%}
+              {%- if recipient_feature_active -%}
                 <gift-card-recipient class="gift-card-recipient">
                   <div class="input input--checkbox">
                     <div class="checkbox-container">
@@ -394,7 +400,13 @@
                     </div>
 
                     <div class="input">
-                      <textarea id="product-{{ section.id }}-{{ product.id }}-recipient-message" rows="4" class="input__field input__field--textarea" name="properties[Recipient message]">{{ form.message }}</textarea>
+                      <input type="hidden" name="properties[__shopify_offset]" value="" disabled>
+                      <input id="product-{{ section.id }}-{{ product.id }}-send-on" type="date" class="input__field input__field--text" pattern="\d{4}-\d{2}-\d{2}" name="properties[Send on]" value="{{ form.send_on }}">
+                      <label for="product-{{ section.id }}-{{ product.id }}-send-on" class="input__label">{{ 'gift_card.recipient.send_on_label' | t }}</label>
+                    </div>
+
+                    <div class="input">
+                      <textarea id="product-{{ section.id }}-{{ product.id }}-recipient-message" rows="4" class="input__field input__field--textarea" name="properties[Message]">{{ form.message }}</textarea>
                       <label for="product-{{ section.id }}-{{ product.id }}-recipient-message" class="input__label">{{ 'gift_card.recipient.message_label' | t }}</label>
                     </div>
                   </div>
@@ -483,7 +495,7 @@
                - It appears on every product page.
               {%- endcomment -%}
               
-                {%- if block.settings.show_payment_button and template.suffix != 'quick-buy-popover' -%}
+                {%- if block.settings.show_payment_button and recipient_feature_active == false and template.suffix != 'quick-buy-popover' -%}
                   {{ form | payment_button }}
 
                   {%- unless product.selected_or_first_available_variant.available -%}

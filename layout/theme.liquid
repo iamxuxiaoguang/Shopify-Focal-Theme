@@ -17,7 +17,9 @@ NOTE TO DEVELOPERS: welcome to Focal theme! We hope that you will enjoy editing 
 
 <html class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ direction }}">
   <head>
+
     {% render 'pagefly-head' %}
+
     <!-- Google Tag Manager -->
     <script>
       (function(w, d, s, l, i) {
@@ -140,11 +142,14 @@ NOTE TO DEVELOPERS: welcome to Focal theme! We hope that you will enjoy editing 
     <script src="{{ 'vendor.js' | asset_url }}" defer></script>
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'custom.js' | asset_url }}" defer></script>
-
-    {%- if tinyscript -%}{{ content_for_header }}{%- else -%}{% render 'tiny-script-control' %}{%- endif -%}
     
+    {%- if tinyscript -%}
+      {{ content_for_header }}
+    {%- else -%}
+      {% render 'tiny-script-control' %}
+    {%- endif -%}
+      
     {% render 'gsf-conversion-pixels' %}
-    
   </head>
 
   {%- assign feature_classes = '' -%}
@@ -154,23 +159,6 @@ NOTE TO DEVELOPERS: welcome to Focal theme! We hope that you will enjoy editing 
   {%- endif -%}
 
   <body class="no-focus-outline {{ feature_classes }}" data-instant-allow-query-string>
-    
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-T257883"
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"
-      >
-      </iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    
-    <!-- Tidio Code Snippet -->
-    <script src="//code.tidio.co/9vpexldou2aqdkzw2y9qd81uqauip5ny.js" async></script>
-    <!-- Tidio Code Snippet End -->
-    
     {%- comment -%}Common SVG definitions that we are re-using in several places{%- endcomment -%}
     <svg class="visually-hidden">
       <linearGradient id="rating-star-gradient-half">
@@ -240,7 +228,23 @@ NOTE TO DEVELOPERS: welcome to Focal theme! We hope that you will enjoy editing 
       {%- sections 'footer-group' -%}
     {%- endif -%}
     
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-T257883"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      >
+      </iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     {{'tiny-img-link-preloader.js' | asset_url | script_tag }}
-       
-</body>
+
+    <!-- CRITEO START -->
+    {% render 'criteo-tracking' %}
+    <!-- CRITEO END -->
+          
+  </body>
 </html>

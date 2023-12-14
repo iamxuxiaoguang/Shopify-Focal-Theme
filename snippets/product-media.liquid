@@ -78,7 +78,9 @@
                   {%- if settings.reveal_product_media and selected_media.id == media.id -%}
                     {%- assign should_reveal = true -%}
                   {%- else -%}
-                    {%- assign loading = 'lazy' -%}
+                    {%- unless forloop.first -%}
+                      {%- assign loading = 'lazy' -%}
+                    {%- endunless -%}
                   {%- endif -%}
 
                   {%- if should_reveal -%}

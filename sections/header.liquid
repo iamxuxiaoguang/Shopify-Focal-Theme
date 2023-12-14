@@ -292,7 +292,7 @@ IMPLEMENTATION NOTE: the header in Focal is pretty complex as it allows a lot of
                 {%- render 'icon' with 'header-tote-bag' -%}
             {%- endcase -%}
 
-            <cart-count class="header__cart-count header__cart-count--floating bubble-count">{{ cart.item_count }}</cart-count>
+            <cart-count class="header__cart-count header__cart-count--floating bubble-count" aria-hidden="true">{{ cart.item_count }}</cart-count>
           </a>
           
           <!-- 个人中心积分显示 - Start -->

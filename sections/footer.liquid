@@ -68,8 +68,8 @@
 
                   {%- render 'social-media' -%}
                 </div>
-              
-              {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
+
+                {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
                 <div class="footer__item-content">
                   {{- shop | login_button: action: 'follow' -}}
                 </div>
@@ -207,12 +207,8 @@
 
         <span class="footer__copyright text--xsmall text--subdued">{{ shop.name }} <span class="square-separator square-separator--block square-separator--subdued"></span> {{ powered_by_link | replace: '<a', '<a class="link--faded"' }}</span>
         
-        <span style="margin: auto;">
-          {% if shop.metafields.gsf_gcr_badge.inline_merchant_id != blank %}
-            <g:ratingbadge merchant_id='{{shop.metafields.gsf_gcr_badge.inline_merchant_id}}'></g:ratingbadge>
-          {% endif %}
-        </span>
-        
+        <span style="margin: auto;"> {% if shop.metafields.gsf_gcr_badge.inline_merchant_id != blank %} <g:ratingbadge merchant_id='{{shop.metafields.gsf_gcr_badge.inline_merchant_id}}'></g:ratingbadge>{% endif %}</span>
+
         <div class="footer__follow-and-payment">
           {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
             <div class="footer__payment-methods">
@@ -223,7 +219,7 @@
                   {{ type | payment_type_svg_tag }}
                 {% endfor %}
             
-            <!-- Knarna Logo -->
+                <!-- Knarna Logo - Start -->
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 45 25" height="25" width="45">
                   <title>Klarna Payment Badge</title>
                   <g fill="none" fill-rule="evenodd">
@@ -237,10 +233,12 @@
                     </g>
                   </g>
                 </svg>
-            
+                <!-- Knarna Logo - End -->
+
               </div>
             </div>
           {%- endif -%}
+  
         </div>
       </div>
     </div>

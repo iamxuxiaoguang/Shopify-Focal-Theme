@@ -21,7 +21,9 @@ NOTE TO DEVELOPERS: welcome to Focal theme! We hope that you will enjoy editing 
 
 <html class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ direction }}">
   <head>
+
     {% render 'pagefly-head' %}
+
     <!-- Google Tag Manager -->
     <script>
       (function(w, d, s, l, i) {
@@ -144,11 +146,14 @@ NOTE TO DEVELOPERS: welcome to Focal theme! We hope that you will enjoy editing 
     <script src="{{ 'vendor.js' | asset_url }}" defer></script>
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'custom.js' | asset_url }}" defer></script>
-
-    {%- if tinyscript -%}{{ content_for_header }}{%- else -%}{% render 'tiny-script-control' %}{%- endif -%}
     
+    {%- if tinyscript -%}
+      {{ content_for_header }}
+    {%- else -%}
+      {% render 'tiny-script-control' %}
+    {%- endif -%}
+      
     {% render 'gsf-conversion-pixels' %}
-    
   </head>
 
   {%- assign feature_classes = '' -%}
