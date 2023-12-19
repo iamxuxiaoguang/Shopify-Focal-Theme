@@ -17,7 +17,10 @@ NOTE TO DEVELOPERS: welcome to Focal theme! We hope that you will enjoy editing 
 
 <html class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ direction }}">
   <head>
-
+<!-- PROGRESSIFY-ME:START -->
+{% include 'progressify-me-snippet' %}
+<!-- PROGRESSIFY-ME:END -->
+    
     {% render 'pagefly-head' %}
 
     <!-- Google Tag Manager -->
@@ -142,13 +145,9 @@ NOTE TO DEVELOPERS: welcome to Focal theme! We hope that you will enjoy editing 
     <script src="{{ 'vendor.js' | asset_url }}" defer></script>
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'custom.js' | asset_url }}" defer></script>
-    
-    {%- if tinyscript -%}
-      {{ content_for_header }}
-    {%- else -%}
-      {% render 'tiny-script-control' %}
-    {%- endif -%}
-      
+
+    {{ content_for_header }}
+
     {% render 'gsf-conversion-pixels' %}
   </head>
 

@@ -427,7 +427,7 @@
                     {{- 'product.form.sold_out' | t -}}
                   {%- endif -%}
                 </button>
-              
+
               {%- comment -%}
                - Below is he Klaviyo Back in Stock Button Code and Style.
               {%- endcomment -%}
@@ -494,7 +494,7 @@
               {%- comment -%}
                - It appears on every product page.
               {%- endcomment -%}
-              
+
                 {%- if block.settings.show_payment_button and recipient_feature_active == false and template.suffix != 'quick-buy-popover' -%}
                   {{ form | payment_button }}
 

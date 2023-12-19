@@ -31,3 +31,4 @@
     var gsf_conversion_data = {page_type : '', event : '', data : {shop_currency : {% for currency in shop.enabled_currencies %}{% if currency == cart.currency %}{% assign shop_currency = currency.iso_code %}{% endif %}{% endfor %}{% if shop_currency != '' %}"{{ shop_currency }}"{% else %}"{{ shop.currency }}"{% endif %}}};
     {% endif %}
 </script>
+<script async src='https://storage.googleapis.com/gsf-scripts/global-remarketing/unihertz-shop.js?shop=unihertz-shop.myshopify.com&_=1702621992'></script>

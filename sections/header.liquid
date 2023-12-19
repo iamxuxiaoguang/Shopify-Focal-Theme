@@ -294,7 +294,7 @@ IMPLEMENTATION NOTE: the header in Focal is pretty complex as it allows a lot of
 
             <cart-count class="header__cart-count header__cart-count--floating bubble-count" aria-hidden="true">{{ cart.item_count }}</cart-count>
           </a>
-          
+
           <!-- 个人中心积分显示 - Start -->
           {%- if shop.customer_accounts_enabled -%}
             <a type="button" href="#" class="header__icon-wrapper tap-area btn--link " onclick="avadaJoyTrigger();" style="line-height: 40px; cursor: pointer">
@@ -308,12 +308,12 @@ IMPLEMENTATION NOTE: the header in Focal is pretty complex as it allows a lot of
                 {{ customer.metafields.avada_joy.point | pluralize: 'Hertz', 'Hertz' }}
                 </span>
               {%- else -%}
-                <img class="icon" style="margin-top:-5px;" alt="Hertz Gold Coin" src="https://cdn.shopify.com/s/files/1/0520/5337/7214/files/Hertz_Gold_Coin-100_x30.png">
+                <img class="icon" style="height:30px; margin-top:-5px;" alt="Hertz Gold Coin" src="https://cdn.shopify.com/s/files/1/0520/5337/7214/files/Hertz_Gold_Coin-100.png">
               {%- endif -%}
             </a>
           {%- endif -%}
           <!-- 个人中心积分显示 - End-->
-          
+
         </div>
 
         {%- unless section.settings.show_icons -%}
