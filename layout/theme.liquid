@@ -17,9 +17,7 @@ NOTE TO DEVELOPERS: welcome to Focal theme! We hope that you will enjoy editing 
 
 <html class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ direction }}">
   <head>
-<!-- PROGRESSIFY-ME:START -->
-{% include 'progressify-me-snippet' %}
-<!-- PROGRESSIFY-ME:END -->
+    {% include 'progressify-me-snippet' %}
     
     {% render 'pagefly-head' %}
 
@@ -40,55 +38,6 @@ NOTE TO DEVELOPERS: welcome to Focal theme! We hope that you will enjoy editing 
       })(window, document, 'script', 'dataLayer', 'GTM-T257883');
     </script>
     <!-- End Google Tag Manager -->
-
-    <!-- Google Dynamic Remarketing Tag Created by Simprosys InfoMedia, for more information write to suppport@simprosys.com -->
-    <!-- Remarketing Head Code Snippet (Start) -->
-    {% assign gtagId = 'AW-575276968' %}
-    <!-- Global site tag (gtag.js) - Google Ads: 575276968 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-575276968"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'AW-575276968');
-    </script>
-    <script>
-      {% assign  ecomm_prodid ='' %}
-      {% assign  ecomm_totalvalue = 0 %}
-      gtag('event', 'page_view', {
-        'send_to': 'AW-575276968',
-        {% if template contains 'index' and collections.all.products.size > 0 %}
-          {% assign limit = collections.all.products.size %}{% if limit > 4 %}{% assign limit = 4 %}{% endif %}{% for product in collections.all.products limit:limit %}{% capture ecomm_prodid %}{{ ecomm_prodid  }}"shopify_US_{{ product.id }}_{{ product.selected_or_first_available_variant.id }}"{% if forloop.last != true %}, {% endif %}{% endcapture %}{% assign get_price = product.selected_or_first_available_variant.price  %}{% assign ecomm_totalvalue = ecomm_totalvalue | plus: get_price %}{% endfor %}
-             'ecomm_pagetype': 'home' ,
-             'ecomm_prodid': [{{ ecomm_prodid }}],
-             'ecomm_totalvalue': ["{{ ecomm_totalvalue | money_without_currency | remove: ',' }}"]
-
-          {% elsif template contains 'collection' and collection.products.size > 0%}
-             {% assign limit = collection.products.size %}{% if limit > 4 %}{% assign limit = 4 %}{% endif %}{% for product in collection.products limit:limit %}{% capture ecomm_prodid %}{{ ecomm_prodid  }}"shopify_US_{{ product.id }}_{{ product.selected_or_first_available_variant.id }}"{% if forloop.last != true %}, {% endif %}{% endcapture %}{% assign get_price = product.selected_or_first_available_variant.price  %}{% assign ecomm_totalvalue = ecomm_totalvalue | plus: get_price %}{% endfor %}
-             'ecomm_pagetype': 'category' ,
-             'ecomm_prodid': [{{ ecomm_prodid }}],
-             'ecomm_totalvalue': ["{{ ecomm_totalvalue | money_without_currency | remove: ',' }}"]
-
-          {% elsif template contains 'cart' and cart.item_count > 0 %}
-             'ecomm_pagetype': 'cart',
-             'ecomm_prodid': [{% for item in cart.items %}"shopify_US_{{ item.product_id }}_{{ item.variant_id }}"{% if forloop.last != true %}, {% endif %}{% endfor %}],
-             'ecomm_totalvalue': '{{ cart.total_price | money_without_currency | remove: ',' }}'
-
-          {% elsif template contains 'product' %}
-             'ecomm_pagetype': 'product',
-             'ecomm_prodid': 'shopify_US_{{ product.id }}_{{ product.selected_or_first_available_variant.id}}',
-             'ecomm_totalvalue': '{{ product.selected_or_first_available_variant.price | money_without_currency | remove: ',' }}'
-
-          {% elsif template contains 'search' and search.performed  and  search.results != empty %}
-            {% assign limit = search.results_count %}{% if limit > 4 %}{% assign limit = 4 %}{% endif %}{% for item in search.results limit:limit %}{% capture ecomm_prodid %}{{ ecomm_prodid  }}"shopify_US_{{ item.id }}_{{ item.selected_or_first_available_variant.id }}"{% if forloop.last != true %}, {% endif %}{% endcapture %}{% assign get_price = item.selected_or_first_available_variant.price  %}{% assign ecomm_totalvalue = ecomm_totalvalue | plus: get_price %}{% endfor %}
-             'ecomm_pagetype': 'searchresults',
-             'ecomm_prodid': [{{ ecomm_prodid }}],
-             'ecomm_totalvalue': ["{{ ecomm_totalvalue | money_without_currency | remove: ',' }}"]
-            {% endif %}
-            });
-    </script>
-    <!-- Remarketing Body Code Snippet (End) -->
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=1.0">
